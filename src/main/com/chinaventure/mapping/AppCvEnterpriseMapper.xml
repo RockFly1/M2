@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinaventure.mapper.AppCvEnterpriseMapper" >
+  <resultMap id="BaseResultMap" type="com.chinaventure.entiy.AppCvEnterprise" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="IMG_URL" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_ID" property="enterpriseId" jdbcType="INTEGER" />
+    <result column="OLD_ENTERPRISE_ID" property="oldEnterpriseId" jdbcType="INTEGER" />
+    <result column="CN_NAME" property="cnName" jdbcType="VARCHAR" />
+    <result column="EN_NAME" property="enName" jdbcType="VARCHAR" />
+    <result column="SHORT_CN_NAME" property="shortCnName" jdbcType="VARCHAR" />
+    <result column="SHORT_EN_NAME" property="shortEnName" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_STAGE_ID" property="enterpriseStageId" jdbcType="INTEGER" />
+    <result column="REG_LOCATION" property="regLocation" jdbcType="VARCHAR" />
+    <result column="CV_EN_DESC" property="cvEnDesc" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_CATEGORY" property="enterpriseCategory" jdbcType="INTEGER" />
+    <result column="SET_UP_TIME" property="setUpTime" jdbcType="TIMESTAMP" />
+    <result column="WEBSITE" property="website" jdbcType="VARCHAR" />
+    <result column="LEGAL_REP" property="legalRep" jdbcType="VARCHAR" />
+    <result column="EMPLOY_COUNT" property="employCount" jdbcType="INTEGER" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="PRODUCTS" property="products" jdbcType="VARCHAR" />
+    <result column="ENTERPRISESTAGE_STATUS" property="enterprisestageStatus" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="STOP_TIME" property="stopTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="DELETED" property="deleted" jdbcType="INTEGER" />
+    <result column="SOURCEID" property="sourceid" jdbcType="INTEGER" />
+    <result column="CHILDLNDUSTRY" property="childlndustry" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_ZHOU" property="enterpriseZhou" jdbcType="INTEGER" />
+    <result column="ENTERPRISE_COUNTRY" property="enterpriseCountry" jdbcType="INTEGER" />
+    <result column="ENTERPRISE_CITY" property="enterpriseCity" jdbcType="INTEGER" />
+    <result column="ENTERPEISE_TOM" property="enterpeiseTom" jdbcType="INTEGER" />
+    <result column="ENTERPRISE_AREA" property="enterpriseArea" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="TRANSMISSIONRIME" property="transmissionrime" jdbcType="VARCHAR" />
+    <result column="COMPARE_FLAG" property="compareFlag" jdbcType="INTEGER" />
+    <result column="IS_STANDARD" property="isStandard" jdbcType="INTEGER" />
+    <result column="SOURCEID_URL" property="sourceidUrl" jdbcType="VARCHAR" />
+    <result column="exist_flag" property="existFlag" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from app_cv_enterprise
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chinaventure.entiy.AppCvEnterprise" >
+      insert into app_cv_enterprise (ID, IMG_URL, ENTERPRISE_ID,
+                                     OLD_ENTERPRISE_ID, CN_NAME, EN_NAME,
+                                     SHORT_CN_NAME, SHORT_EN_NAME, ENTERPRISE_STAGE_ID,
+                                     REG_LOCATION, CV_EN_DESC, ENTERPRISE_CATEGORY,
+                                     SET_UP_TIME, WEBSITE, LEGAL_REP,
+                                     EMPLOY_COUNT, ORG_CODE, PRODUCTS,
+                                     ENTERPRISESTAGE_STATUS, CREATE_TIME, UPDATE_TIME,
+                                     STOP_TIME, DELETED, SOURCEID,
+                                     CHILDLNDUSTRY, ENTERPRISE_ZHOU, ENTERPRISE_COUNTRY,
+                                     ENTERPRISE_CITY, ENTERPEISE_TOM, ENTERPRISE_AREA,
+                                     REMARK, TRANSMISSIONRIME, COMPARE_FLAG,
+                                     IS_STANDARD, SOURCEID_URL, exist_flag
+      )
+      values (#{id,jdbcType=INTEGER},
+          #{imgUrl,jdbcType=VARCHAR}, #{enterpriseId,jdbcType=INTEGER},
+          #{oldEnterpriseId,jdbcType=INTEGER}, #{cnName,jdbcType=VARCHAR},
+          #{enName,jdbcType=VARCHAR},
+          #{shortCnName,jdbcType=VARCHAR}, #{shortEnName,jdbcType=VARCHAR},
+          #{enterpriseStageId,jdbcType=INTEGER},
+           #{regLocation,jdbcType=VARCHAR}, #{cvEnDesc,jdbcType=VARCHAR},
+          #{enterpriseCategory,jdbcType=INTEGER},
+          #{setUpTime,jdbcType=TIMESTAMP}, #{website,jdbcType=VARCHAR}, #{legalRep,jdbcType=VARCHAR},
+          #{employCount,jdbcType=INTEGER}, #{orgCode,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR},
+          #{enterprisestageStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{stopTime,jdbcType=TIMESTAMP},
+          #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER}, #{sourceid,jdbcType=INTEGER},
+          #{childlndustry,jdbcType=VARCHAR}, #{enterpriseZhou,jdbcType=INTEGER}, #{enterpriseCountry,jdbcType=INTEGER},
+          #{enterpriseCity,jdbcType=INTEGER}, #{enterpeiseTom,jdbcType=INTEGER}, #{enterpriseArea,jdbcType=INTEGER},
+          #{remark,jdbcType=VARCHAR}, #{transmissionrime,jdbcType=VARCHAR}, #{compareFlag,jdbcType=INTEGER},
+          #{isStandard,jdbcType=INTEGER}, #{sourceidUrl,jdbcType=VARCHAR}, #{existFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinaventure.entiy.AppCvEnterprise" >
+    insert into app_cv_enterprise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="imgUrl != null" >
+        IMG_URL,
+      </if>
+      <if test="enterpriseId != null" >
+        ENTERPRISE_ID,
+      </if>
+      <if test="oldEnterpriseId != null" >
+        OLD_ENTERPRISE_ID,
+      </if>
+      <if test="cnName != null" >
+        CN_NAME,
+      </if>
+      <if test="enName != null" >
+        EN_NAME,
+      </if>
+      <if test="shortCnName != null" >
+        SHORT_CN_NAME,
+      </if>
+      <if test="shortEnName != null" >
+        SHORT_EN_NAME,
+      </if>
+      <if test="enterpriseStageId != null" >
+        ENTERPRISE_STAGE_ID,
+      </if>
+      <if test="regLocation != null" >
+        REG_LOCATION,
+      </if>
+      <if test="cvEnDesc != null" >
+        CV_EN_DESC,
+      </if>
+      <if test="enterpriseCategory != null" >
+        ENTERPRISE_CATEGORY,
+      </if>
+      <if test="setUpTime != null" >
+        SET_UP_TIME,
+      </if>
+      <if test="website != null" >
+        WEBSITE,
+      </if>
+      <if test="legalRep != null" >
+        LEGAL_REP,
+      </if>
+      <if test="employCount != null" >
+        EMPLOY_COUNT,
+      </if>
+      <if test="orgCode != null" >
+        ORG_CODE,
+      </if>
+      <if test="products != null" >
+        PRODUCTS,
+      </if>
+      <if test="enterprisestageStatus != null" >
+        ENTERPRISESTAGE_STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="stopTime != null" >
+        STOP_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="deleted != null" >
+        DELETED,
+      </if>
+      <if test="sourceid != null" >
+        SOURCEID,
+      </if>
+      <if test="childlndustry != null" >
+        CHILDLNDUSTRY,
+      </if>
+      <if test="enterpriseZhou != null" >
+        ENTERPRISE_ZHOU,
+      </if>
+      <if test="enterpriseCountry != null" >
+        ENTERPRISE_COUNTRY,
+      </if>
+      <if test="enterpriseCity != null" >
+        ENTERPRISE_CITY,
+      </if>
+      <if test="enterpeiseTom != null" >
+        ENTERPEISE_TOM,
+      </if>
+      <if test="enterpriseArea != null" >
+        ENTERPRISE_AREA,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="transmissionrime != null" >
+        TRANSMISSIONRIME,
+      </if>
+      <if test="compareFlag != null" >
+        COMPARE_FLAG,
+      </if>
+      <if test="isStandard != null" >
+        IS_STANDARD,
+      </if>
+      <if test="sourceidUrl != null" >
+        SOURCEID_URL,
+      </if>
+      <if test="existFlag != null" >
+        exist_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=INTEGER},
+      </if>
+      <if test="oldEnterpriseId != null" >
+        #{oldEnterpriseId,jdbcType=INTEGER},
+      </if>
+      <if test="cnName != null" >
+        #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortCnName != null" >
+        #{shortCnName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortEnName != null" >
+        #{shortEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseStageId != null" >
+        #{enterpriseStageId,jdbcType=INTEGER},
+      </if>
+      <if test="regLocation != null" >
+        #{regLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="cvEnDesc != null" >
+        #{cvEnDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseCategory != null" >
+        #{enterpriseCategory,jdbcType=INTEGER},
+      </if>
+      <if test="setUpTime != null" >
+        #{setUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRep != null" >
+        #{legalRep,jdbcType=VARCHAR},
+      </if>
+      <if test="employCount != null" >
+        #{employCount,jdbcType=INTEGER},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="products != null" >
+        #{products,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisestageStatus != null" >
+        #{enterprisestageStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopTime != null" >
+        #{stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="sourceid != null" >
+        #{sourceid,jdbcType=INTEGER},
+      </if>
+      <if test="childlndustry != null" >
+        #{childlndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseZhou != null" >
+        #{enterpriseZhou,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseCountry != null" >
+        #{enterpriseCountry,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseCity != null" >
+        #{enterpriseCity,jdbcType=INTEGER},
+      </if>
+      <if test="enterpeiseTom != null" >
+        #{enterpeiseTom,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseArea != null" >
+        #{enterpriseArea,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="transmissionrime != null" >
+        #{transmissionrime,jdbcType=VARCHAR},
+      </if>
+      <if test="compareFlag != null" >
+        #{compareFlag,jdbcType=INTEGER},
+      </if>
+      <if test="isStandard != null" >
+        #{isStandard,jdbcType=INTEGER},
+      </if>
+      <if test="sourceidUrl != null" >
+        #{sourceidUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="existFlag != null" >
+        #{existFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+   </insert>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from app_cv_enterprise
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <update id="updateByPrimaryKeySelective" parameterType="com.chinaventure.entiy.AppCvEnterprise" >
+        update app_cv_enterprise
+        <set >
+            <if test="imgUrl != null" >
+                IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="enterpriseId != null" >
+                ENTERPRISE_ID = #{enterpriseId,jdbcType=INTEGER},
+            </if>
+            <if test="oldEnterpriseId != null" >
+                OLD_ENTERPRISE_ID = #{oldEnterpriseId,jdbcType=INTEGER},
+            </if>
+            <if test="cnName != null" >
+                CN_NAME = #{cnName,jdbcType=VARCHAR},
+            </if>
+            <if test="enName != null" >
+                EN_NAME = #{enName,jdbcType=VARCHAR},
+            </if>
+            <if test="shortCnName != null" >
+                SHORT_CN_NAME = #{shortCnName,jdbcType=VARCHAR},
+            </if>
+            <if test="shortEnName != null" >
+                SHORT_EN_NAME = #{shortEnName,jdbcType=VARCHAR},
+            </if>
+            <if test="enterpriseStageId != null" >
+                ENTERPRISE_STAGE_ID = #{enterpriseStageId,jdbcType=INTEGER},
+            </if>
+            <if test="regLocation != null" >
+                REG_LOCATION = #{regLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="cvEnDesc != null" >
+                CV_EN_DESC = #{cvEnDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="enterpriseCategory != null" >
+                ENTERPRISE_CATEGORY = #{enterpriseCategory,jdbcType=INTEGER},
+            </if>
+            <if test="setUpTime != null" >
+                SET_UP_TIME = #{setUpTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="website != null" >
+                WEBSITE = #{website,jdbcType=VARCHAR},
+            </if>
+            <if test="legalRep != null" >
+                LEGAL_REP = #{legalRep,jdbcType=VARCHAR},
+            </if>
+            <if test="employCount != null" >
+                EMPLOY_COUNT = #{employCount,jdbcType=INTEGER},
+            </if>
+            <if test="orgCode != null" >
+                ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+            </if>
+            <if test="products != null" >
+                PRODUCTS = #{products,jdbcType=VARCHAR},
+            </if>
+            <if test="enterprisestageStatus != null" >
+                ENTERPRISESTAGE_STATUS = #{enterprisestageStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="stopTime != null" >
+                STOP_TIME = #{stopTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null" >
+                DELETED = #{deleted,jdbcType=INTEGER},
+            </if>
+            <if test="sourceid != null" >
+                SOURCEID = #{sourceid,jdbcType=INTEGER},
+            </if>
+            <if test="childlndustry != null" >
+                CHILDLNDUSTRY = #{childlndustry,jdbcType=VARCHAR},
+            </if>
+            <if test="enterpriseZhou != null" >
+                ENTERPRISE_ZHOU = #{enterpriseZhou,jdbcType=INTEGER},
+            </if>
+            <if test="enterpriseCountry != null" >
+                ENTERPRISE_COUNTRY = #{enterpriseCountry,jdbcType=INTEGER},
+            </if>
+            <if test="enterpriseCity != null" >
+                ENTERPRISE_CITY = #{enterpriseCity,jdbcType=INTEGER},
+            </if>
+            <if test="enterpeiseTom != null" >
+                ENTERPEISE_TOM = #{enterpeiseTom,jdbcType=INTEGER},
+            </if>
+            <if test="enterpriseArea != null" >
+                ENTERPRISE_AREA = #{enterpriseArea,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null" >
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="transmissionrime != null" >
+                TRANSMISSIONRIME = #{transmissionrime,jdbcType=VARCHAR},
+            </if>
+            <if test="compareFlag != null" >
+                COMPARE_FLAG = #{compareFlag,jdbcType=INTEGER},
+            </if>
+            <if test="isStandard != null" >
+                IS_STANDARD = #{isStandard,jdbcType=INTEGER},
+            </if>
+            <if test="sourceidUrl != null" >
+                SOURCEID_URL = #{sourceidUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="existFlag != null" >
+                exist_flag = #{existFlag,jdbcType=INTEGER},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
